@@ -20,7 +20,9 @@ public class GenderActivity extends AppCompatActivity {
                 .edit()
                 .putString("GENDER",gender)
                 .apply();
+        //adda
         Intent home = new Intent(this,MainActivity.class);
         startActivity(home);
+
     }
 }
