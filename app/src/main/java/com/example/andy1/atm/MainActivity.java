@@ -13,12 +13,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode== RC_LOGIN){
-            if(resultCode==RESULT_OK){
-                String uid = data.getStringExtra("LOGIN_USERID");
-                String pw = data.getStringExtra("LOGIN_PASSWD");
-                Log.d("RSEULT",uid+" / "+pw);
+            if(resultCode != RESULT_OK){
+              finish();
             }else{
-                finish();
+                Intent nickname = new Intent(this,NickNameActivity.class);
+                startActivity(nickname);
             }
         }
     }
