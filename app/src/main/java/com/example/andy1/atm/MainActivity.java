@@ -25,11 +25,13 @@ public class MainActivity extends BasicActivity {
 //        startActivity(intent);
             startActivityForResult(intent,RC_LOGIN);
         }
-        List<String> fruits = Arrays.asList("香蕉" ,"鳳梨","芭樂");
-        ArrayAdapter<String> adapter = new
-                ArrayAdapter<>(this,android.R.layout.simple_list_item_1,fruits);
+
+        List<String> fruits = Arrays.asList("香蕉" ,"蘋果","芭樂");
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,fruits);
         ListView listView =findViewById(R.id.list);
         listView.setAdapter(adapter);
+
     }
 
 
@@ -37,12 +39,13 @@ public class MainActivity extends BasicActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode== RC_LOGIN){
             if(resultCode != RESULT_OK){
               finish();
             }else{
                 login=true;
-                if(user.isValid()){
+                if(!user.isValid()){
                     Intent nickname = new Intent(this, NickNameActivity.class);
                     startActivity(nickname);
                 }
