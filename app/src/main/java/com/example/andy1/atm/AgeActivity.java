@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,10 @@ int [] num = {19,20,21,22};
     }
 
     public void next (View view){
-        EditText edAge=findViewById(R.id.edAge);
-        String a = edAge.getText().toString();
-        int age = Integer.parseInt(a);
-        user.setAge(age);
+//        EditText edAge=findViewById(R.id.edAge);
+//        String a = edAge.getText().toString();
+//        int age = Integer.parseInt(a);
+//        user.setAge(age);
 
         Intent gender = new Intent(this,GenderActivity.class);
         startActivity(gender);
@@ -50,11 +51,23 @@ int [] num = {19,20,21,22};
         }
 
         @Override
-        public void onBindViewHolder(@NonNull AgeViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull AgeViewHolder holder, final int position) {
         holder.ageText.setText(String.valueOf(num[position]));
         if (num[position]==19){
             holder.ageText.setTextColor(Color.RED);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("AgeActivity", "onClick: "+num[position]);
+                EditText edAge=findViewById(R.id.edAge);
+                 edAge.setText(num[position]+"");
+                String a = edAge.getText().toString();
+                 int age = Integer.parseInt(a);
+              //   int age = Integer.parseInt(((EditText)findViewById(R.id.edAge)).getText().toString());
+                user.setAge(age);
+            }
+        });
         }
 
         @Override

@@ -1,9 +1,7 @@
 package com.example.andy1.atm;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,8 +16,7 @@ public class MainActivity extends BasicActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView nickText = findViewById(R.id.nickname);
-        nickText.setText(user.getNickname());
+
         if(!login){
             Intent intent = new Intent(this, LoginActivity.class);
 //        startActivity(intent);
@@ -31,6 +28,10 @@ public class MainActivity extends BasicActivity {
                 new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,fruits);
         ListView listView =findViewById(R.id.list);
         listView.setAdapter(adapter);
+
+
+
+
 
     }
 
@@ -49,6 +50,8 @@ public class MainActivity extends BasicActivity {
                     Intent nickname = new Intent(this, NickNameActivity.class);
                     startActivity(nickname);
                 }
+                TextView nickText = findViewById(R.id.show_nickname);
+                nickText.setText(user.getNickname());
             }
         }
     }
