@@ -18,6 +18,8 @@ import javax.xml.validation.ValidatorHandler;
 
 public class AgeActivity extends BasicActivity {
 int [] num = {19,20,21,22};
+    private EditText edAge;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ int [] num = {19,20,21,22};
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter((new AgeAdapter()));
+        edAge = findViewById(R.id.edAge);
     }
 
     public void next (View view){
@@ -33,7 +36,10 @@ int [] num = {19,20,21,22};
 //        String a = edAge.getText().toString();
 //        int age = Integer.parseInt(a);
 //        user.setAge(age);
-
+        edAge = findViewById(R.id.edAge);
+        String a = edAge.getText().toString();
+        int age = Integer.parseInt(a);
+        user.setAge(age);
         Intent gender = new Intent(this,GenderActivity.class);
         startActivity(gender);
     }
@@ -60,12 +66,11 @@ int [] num = {19,20,21,22};
             @Override
             public void onClick(View v) {
                 Log.d("AgeActivity", "onClick: "+num[position]);
-                EditText edAge=findViewById(R.id.edAge);
+
                  edAge.setText(num[position]+"");
-                String a = edAge.getText().toString();
-                 int age = Integer.parseInt(a);
+
               //   int age = Integer.parseInt(((EditText)findViewById(R.id.edAge)).getText().toString());
-                user.setAge(age);
+
             }
         });
         }
